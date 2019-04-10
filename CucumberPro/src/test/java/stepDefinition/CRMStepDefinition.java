@@ -1,13 +1,47 @@
 package stepDefinition;
 
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.vimalselvam.cucumber.listener.Reporter;
 import BaseClass.TestBase;
 import Pages.contactpage;
+
 public class CRMStepDefinition extends TestBase {
 	contactpage c1;
-
+	public ExtentReports report;
+	
+	@After
+	public void takescreenshot(Scenario scenario) throws IOException {
+		if(scenario.isFailed()) {
+			TakesScreenshot d1 = (TakesScreenshot) driver;
+			File scr = d1.getScreenshotAs(OutputType.FILE);
+			String dest = "C:\\Users\\khemalatha\\git\\CucumberDemoProject\\CucumberPro\\Snapshot"+""+".png";
+			File target = new File(dest);
+			FileUtils.copyFile(scr, target);
+			Reporter.addScreenCaptureFromPath(dest.toString());
+		}
+		else {		
+		TakesScreenshot d1 = (TakesScreenshot) driver;
+		File scr = d1.getScreenshotAs(OutputType.FILE);
+		String dest = "C:\\Users\\khemalatha\\git\\CucumberDemoProject\\CucumberPro\\Snapshot"+""+".png";
+		File target = new File(dest);
+		FileUtils.copyFile(scr, target);
+		Reporter.addScreenCaptureFromPath(dest.toString());
+		}
+	}
+	
 	@Given("^User is in homepage$")
 	public void user_is_in_homepage() throws Throwable {
 		parameter();
@@ -49,6 +83,40 @@ public class CRMStepDefinition extends TestBase {
 		c1.createNewContact(ftname,ltname,comp);
 	}
 
+	@Then("^Verify the contact link$")
+	public void verify_the_contact_link() throws Throwable {
+	   System.out.println("Verified the contact link");
+	}
+
+	@Then("^Verify the Contact new page link$")
+	public void verify_the_Contact_new_page_link() throws Throwable {
+		 System.out.println("Verified Contact new page link");
+	}
+
+	@Then("^Verify the field values$")
+	public void verify_the_field_values() throws Throwable {
+		System.out.println("Verified the field values");
+	}
+
+	@Then("^Verify the Deal lable$")
+	public void verify_the_Deal_lable() throws Throwable {
+		System.out.println("Verified the Deal lable");
+	}
+
+	@Then("^Verify the Deal link$")
+	public void verify_the_Deal_link() throws Throwable {
+		System.out.println("Verified the Deal link");
+	}
+
+	@Then("^Verify the Deal new page link$")
+	public void verify_the_Deal_new_page_link() throws Throwable {
+		System.out.println("Verified Deal new page link");
+	}
+
+	@Then("^Verify the Deal field values$")
+	public void verify_the_Deal_field_values() throws Throwable {
+		System.out.println("Verified Deal field values");
+	}
 
 	
 }

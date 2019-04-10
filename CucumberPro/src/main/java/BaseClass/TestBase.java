@@ -15,6 +15,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class TestBase {
 		
 	public static WebDriver driver;
@@ -38,12 +40,13 @@ public class TestBase {
 		
 		  if (browser.equalsIgnoreCase("chrome"))
 	        {
-	       System.setProperty("webdriver.chrome.driver","D:\\chromedriver.exe");
-	       driver = new ChromeDriver();
+			//System.setProperty("webdriver.chrome.driver","D:\\chromedriver.exe");
+			  WebDriverManager.chromedriver().setup();
+			  driver = new ChromeDriver();
 	        }
 	        else if (browser.equalsIgnoreCase("ie"))
 	        {
-	        System.setProperty("webdriver.ie.driver", "");
+	        	WebDriverManager.iedriver().setup();
 	        driver = new InternetExplorerDriver();
 	        }
 		
