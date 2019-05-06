@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.IHookable;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
@@ -24,7 +25,7 @@ public class TestBase {
 	public TestBase(){
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream("D:\\eclipse workspace\\CucumberTestNG-master\\src\\main\\java\\configfile\\config.properties");
+			FileInputStream ip = new FileInputStream("E:\\c files\\git\\CucumberDemoProject\\CucumberPro\\src\\main\\java\\configfile\\config.properties");
 			prop.load(ip);
 			
 		} catch (FileNotFoundException e) {
@@ -33,25 +34,32 @@ public class TestBase {
 			e.printStackTrace();
 		}
 	}	
+
 	public static void parameter() throws InterruptedException {
 		String browser = prop.getProperty("browser");
 		
 		  if (browser.equalsIgnoreCase("chrome"))
 	        {
-	       System.setProperty("webdriver.chrome.driver","D:\\chromedriver.exe");
+	       System.setProperty("webdriver.chrome.driver",".\\lib\\chromedriver\\chromedriver.exe");
 	       driver = new ChromeDriver();
 	        }
 	        else if (browser.equalsIgnoreCase("ie"))
 	        {
-	        System.setProperty("webdriver.ie.driver", "");
+	        System.setProperty("webdriver.ie.driver", ".\\lib\\IEdriver\\IEDriverServer.exe");
 	        driver = new InternetExplorerDriver();
 	        }
-		
+	        else if (browser.equalsIgnoreCase("firefox"))
+	        {
+	        System.setProperty("webdriver.gecko.driver", ".\\lib\\firefoxdriver\\geckodriver.exe");
+	        driver = new FirefoxDriver();
+	        }
 		 
 	driver.manage().deleteAllCookies();
    driver.manage().window().maximize();
 	
    driver.get(prop.getProperty("url"));
+   driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
    
    public static void userlogin(String username, String password) throws InterruptedException {

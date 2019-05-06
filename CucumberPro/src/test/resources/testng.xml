@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="RegressionSuite" parallel="methods" thread-count="3">
+ 
+ 	<test name="RegistrationPageRegressionTests" >
+		
+ 	    	<parameter name="browser" value="chrome"></parameter>
+		 <parameter name="emailid" value="Admin"></parameter>
+		<parameter name="password" value="pass"></parameter>
+		
+		<classes>
+		<!-- <class name="Parametertest.parametertest"> </class> -->
+			<class name="runner.TestNGRunner"> </class>
+			<!-- <class name="Selenium.Testngframework.InnovationCount"> </class>
+			<class name="Selenium.Testngframework.TestngAnnotations"></class>
+			<class name="Selenium.Testngframework.TestngFearture"></class> -->
+		</classes>
+	</test>
+</suite> 

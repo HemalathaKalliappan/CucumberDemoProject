@@ -6,7 +6,10 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		features="src/test/resources/companypage.feature",
 		glue={"stepDefinition"},
-		plugin = {"com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:ExtentReports/report.html"}
+		plugin = {"com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:ExtentReports/report.html"},
+		dryRun = false,
+		tags = {"@Chrome","@Firefox"}
+		
 		)
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 

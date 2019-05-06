@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [RegressionSuite]">
+  <parameter name="password" value="pass"/>
+  <parameter name="browser" value="chrome"/>
+  <parameter name="emailid" value="Admin"/>
+  <test name="RegistrationPageRegressionTests(failed)">
+    <parameter name="password" value="pass"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="emailid" value="Admin"/>
+    <classes>
+      <class name="runner.TestNGRunner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="feature" invocation-numbers="0"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- runner.TestNGRunner -->
+    </classes>
+  </test> <!-- RegistrationPageRegressionTests(failed) -->
+</suite> <!-- Failed suite [RegressionSuite] -->
