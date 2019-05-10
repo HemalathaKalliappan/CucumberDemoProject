@@ -16,6 +16,8 @@ import org.testng.IHookable;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class TestBase {
 		
 	public static WebDriver driver;
@@ -40,11 +42,13 @@ public class TestBase {
 		
 		  if (browser.equalsIgnoreCase("chrome"))
 	        {
-	       System.setProperty("webdriver.chrome.driver",".\\lib\\chromedriver\\chromedriver.exe");
+       System.setProperty("webdriver.chrome.driver",".\\lib\\chromedriver\\chromedriver.exe");
 	       driver = new ChromeDriver();
+
 	        }
 	        else if (browser.equalsIgnoreCase("ie"))
 	        {
+
 	        System.setProperty("webdriver.ie.driver", ".\\lib\\IEdriver\\IEDriverServer.exe");
 	        driver = new InternetExplorerDriver();
 	        }

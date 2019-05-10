@@ -7,9 +7,9 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		features="src/test/resources/DatatableUsingMap.feature",
 		glue={"stepDefinition"},
 		plugin = {"com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:ExtentReports/report.html"},
+
 		dryRun = false
-	//	tags = {"@Chrome","@Firefox"}
-		
+
 		)
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 

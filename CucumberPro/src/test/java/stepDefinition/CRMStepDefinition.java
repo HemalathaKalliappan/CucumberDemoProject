@@ -50,8 +50,6 @@ public class CRMStepDefinition extends TestBase {
 		}
 	}
 	
-	
-	
 	@Given("^User is in homepage$")
 	public void user_is_in_homepage() throws Throwable {
 		parameter();
