@@ -1,15 +1,21 @@
 package stepDefinition;
 
+
+import cucumber.api.DataTable;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Parameters;
@@ -28,7 +34,7 @@ public class CRMStepDefinition extends TestBase {
 		if(scenario.isFailed()) {
 			TakesScreenshot d1 = (TakesScreenshot) driver;
 			File scr = d1.getScreenshotAs(OutputType.FILE);
-			String dest = "C:\\Users\\khemalatha\\git\\CucumberDemoProject\\CucumberPro\\Snapshot"+""+".png";
+			String dest = "E:\\c files\\git\\CucumberDemoProject\\CucumberPro\\Snapshot\\screenshot"+""+".png";
 			File target = new File(dest);
 			FileUtils.copyFile(scr, target);
 			Reporter.addScreenCaptureFromPath(dest.toString());
@@ -36,7 +42,7 @@ public class CRMStepDefinition extends TestBase {
 		else {		
 		TakesScreenshot d1 = (TakesScreenshot) driver;
 		File scr = d1.getScreenshotAs(OutputType.FILE);
-		String dest = "C:\\Users\\khemalatha\\git\\CucumberDemoProject\\CucumberPro\\Snapshot"+""+".png";
+		String dest = "E:\\c files\\git\\CucumberDemoProject\\CucumberPro\\Snapshot\\screenshot"+""+".png";
 		File target = new File(dest);
 		FileUtils.copyFile(scr, target);
 		Reporter.addScreenCaptureFromPath(dest.toString());
@@ -48,11 +54,31 @@ public class CRMStepDefinition extends TestBase {
 		parameter();
 	}
 	
+	@Then("^Enter username password and click on Submit$")
+	public void enter_username_password_and_click_on_Submit(DataTable data) throws Throwable {
+		List<List<String>> datum = data.raw();
+		  driver.findElement(By.name("username")).sendKeys(datum.get(0).get(0));
+		   driver.findElement(By.name("password")).sendKeys(datum.get(0).get(1));
+		   Thread.sleep(2000);
+		   driver.findElement(By.xpath("//input[@type='submit']")).click();
+	}
+	@Then("^Enter username and password then click on Submit$")
+	public void enter_username_and_password_then_click_on_Submit(DataTable credential) throws Throwable {
+		for(Map<String, String> data1 : credential.asMaps(String.class, String.class)) {
+			 driver.findElement(By.name("username")).sendKeys(data1.get("username"));
+			   driver.findElement(By.name("password")).sendKeys(data1.get("password"));
+			   Thread.sleep(2000);
+			   driver.findElement(By.xpath("//input[@type='submit']")).click();
+		}
+		
+	}
+	
+	
 	@Then("^Enter \"([^\"]*)\" and \"([^\"]*)\" and click on Submit$")
-	public void enter_and_and_click_on_Submit(String username, String password) throws Throwable {
+	public void enter_and_and_click_on_Submit(String username, String password ) throws Throwable {
 		 userlogin(username,password);
 	}
-
+	
 	@Then("^login should be successful$")
 	public void login_should_be_successful() throws Throwable {
 	    System.out.println("Loggedin Successfully");
