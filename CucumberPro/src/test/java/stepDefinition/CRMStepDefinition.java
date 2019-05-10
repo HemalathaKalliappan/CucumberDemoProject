@@ -38,6 +38,7 @@ public class CRMStepDefinition extends TestBase {
 			File target = new File(dest);
 			FileUtils.copyFile(scr, target);
 			Reporter.addScreenCaptureFromPath(dest.toString());
+			
 		}
 		else {		
 		TakesScreenshot d1 = (TakesScreenshot) driver;

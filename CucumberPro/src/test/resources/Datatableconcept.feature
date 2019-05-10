@@ -1,5 +1,6 @@
 Feature: Login Functionality Feature
 
+
 Scenario: Company page fuctionality
 Given User is in homepage
 Then  Enter username password and click on Submit
