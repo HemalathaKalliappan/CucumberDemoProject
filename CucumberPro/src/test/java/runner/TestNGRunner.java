@@ -1,7 +1,10 @@
 package runner;
 
+import org.junit.runner.RunWith;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+
 
 @CucumberOptions(
 		features="src/test/resources/DatatableUsingMap.feature",
@@ -11,6 +14,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		dryRun = false
 
 		)
+
 public class TestNGRunner extends AbstractTestNGCucumberTests {
 
 }
